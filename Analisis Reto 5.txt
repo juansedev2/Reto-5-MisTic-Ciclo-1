@@ -1,0 +1,159 @@
+Reto 5 Análisis:
+
+Descripción del problema:
+
+En el año 2015, los líderes mundiales adoptaron un conjunto de objetivos globales para erradicar la pobreza, proteger el planeta y asegurar la prosperidad para todos como parte de una nueva agenda de desarrollo sostenible. 
+Uno de estos objetivos es el de salud y bienestar y una de sus metas busca reducir en un tercio la mortalidad prematura por enfermedades no transmisibles mediante la prevención y el tratamiento.
+Debido a esto, el ministerio de salud desea que usted construya un sistema para la programar la entrega de existencias de múltiples tipos de medicamentos en varias sucursales de una IPS 
+para el tratamiento y prevención de la hipotensión y la hipertensión, en pos del mejoramiento de la calidad de vida de los ciudadanos.
+
+============================================================================================================================================================================================================================================
+
+Requerimientos:
+
+Para ello, el sistema debe leer la información del archivo data.csv, que contiene los siguientes campos / columnas:
+
+	1.	first_name: El primer nombre del paciente.
+	2.	last_name: El primer apellido del paciente.
+	3.	gender: El género del paciente (‘m’ para hombres o ‘f’ para mujeres).
+	4.	city_name: El nombre de la ciudad donde se encuentra la sucursal.
+	5.	department_name: El nombre del departamento donde se encuentra la sucursal.
+	6.	id_branch: El número identificador de la sucursal (entre 1 y 32).
+	7.	medicine_type: El tipo de medicamento que la persona está solicitando (entre 1 y 20).
+	8.	medicine_quantity: Cantidad de existencias que el paciente está solicitando.
+	9.	systolic_pressure: El valor de la presión sistólica del paciente.
+	10.	diastolic_pressure: El valor de la presión diastólica del paciente.
+
+
+En cuanto al id_branch, hace referencia al identificador de la ciudad, por ejemplo el número 27 es la ciudad de Bucaramanga y el departamento de Santander
+
+No me voy a poner a contar todos los 32 y a indentificarlos, que pereza
+
+
+Una sucursal solo se encuentra en una única ciudad y en un único departamento.
+
+Los rangos de valores de presión, así como su categoría y si se programa o no la entrega de existencias se listan en la siguiente tabla: 
+
+
+				Presión Sistólica			Presión Diastólica			Categoría				¿Se programa la entrega?
+
+					< 91					< 63				Hipotension					    Sí
+
+				    [91 - 134)				      [63 - 77)			        Ideal						    No
+
+				    [134 - 162)				      [77 - 105)			Normal						    No
+
+				    [162 - 188)				      [105 - 119)			Normal-alta					    Sí
+
+				    [188 - 201)				      [119 - 126)			HTA Grado 1					    Sí
+
+				    [201 - 214)				      [126 - 146)			HTA Grado 2				            Sí
+
+				      >= 214 					>= 146				HTA Grado 3					    Sí
+
+				      >= 152 					< 77				Hipertension Solo Sistolica			    Sí
+
+
+
+SALIDA DEL PROGRAMA:
+
+
+	El programa debe mostrar por pantalla para cada una de las sucursales leídas previamente, en orden ascendente, la siguiente información haciendo uso de los datos del archivo data.csv:
+
+	1.	El número identificador de la sucursal, el nombre de la ciudad y el nombre del departamento donde se encuentra la sucursal.
+	2.	La cadena ‘scheduled patients’.
+	3.	La cadena ‘male’, seguido de la cantidad de hombres a los que se les programa la entrega medicamentos en esa sucursal.
+	4.	La cadena ‘female’, seguido de la cantidad de mujeres a las que se les programa la entrega medicamentos en esa sucursal.
+	5.	La cadena ‘total’, seguido de la cantidad de total de pacientes a los que se les programa la entrega medicamentos en esa sucursal.
+	6.	La cadena ‘scheduled medicine quantity’.
+	7.	La cadena ‘mean’, seguido de la media (promedio) de la cantidad de medicamentos programados para entrega, independientemente del tipo, en esa sucursal, formateado a 2 cifras decimales.
+	8.	La cadena ‘total’, seguida del total de medicamentos programados para entrega, independientemente del tipo.
+
+============================================================================================================================================================================================================================================
+
+EJEMPLOS DE SALIDA:
+
+Ejemplo 1 
+
+Entrada Esperada
+1   	 	-------> Se recibe el número identificador de la sucursal que deberá mostrar la información
+
+Salida Esperada
+1 Leticia Amazonas  -------> Mostrar el número identificador de la sucursal, el nombre de la ciudad y el nombre del departamento.
+scheduled patients  -------> Mostrar esta cadena obligatoria literal de "schedule patients", que creo que en español es como plan o programa de pacientes.
+male 1089           -------> Mostrar la cadena male y la cantidad de hombres que hay registrados en esa sucursal QUE FUERON ATENDIDOS.
+female 1090	    -------> Mostrar la cadena female y la cantidad de hombres que hay registrados en esa sucursal QUE FUERON ATENDIDOS.
+total 2179	    -------> Mostrar la cadena total y la CANTIDAD DE PACIENTES a los cuales SE LES PROGRAMA LA ENTREGA DE MEDICAMENTOS EN ESA SUCURSAL.
+scheduled medicine quantity  ------->  Mostrar la cadena de "schedule medicine quantity" que significa programar cantidad de medicamentos.
+mean 150.45         -------> Mostrar la cadena de mean que es medio en español y la cantidad PROMEDIO de la cantidad de medicamentos programados para entrega, independientemente del tipo, en esa sucursal, formateado a dos cifras decimales
+total 327837  	    -------> Mostrar la cadena total y la CANTIDAD DE MEDICAMENTOS PROGRAMADOS PARA ENTREGA, independientemente del tipo.
+
+
+
+Ejemplo 2
+
+Entrada Esperada
+3
+
+Salida Esperada
+3 Arauca Arauca
+scheduled patients
+male 1084
+female 1106
+total 2190
+scheduled medicine quantity
+mean 151.35
+total 331450
+
+
+
+Ejemplo 3
+
+Entrada Esperada
+5
+
+Salida Esperada
+
+5 Cartagena Bolivar
+scheduled patients
+male 1052
+female 1122
+total 2174
+scheduled medicine quantity
+mean 149.23
+total 324436
+
+
+Ejemplo 4
+
+Entrada Esperada
+10
+
+Salida Esperada
+
+10 Popayan Cauca
+scheduled patients
+male 1152
+female 1073
+total 2225
+scheduled medicine quantity
+mean 150.09
+total 333956
+
+
+
+Ejemplo 5
+
+Entrada Esperada
+23
+
+Salida Esperada
+
+23 Mocoa Putumayo
+scheduled patients
+male 1108
+female 1089
+total 2197
+scheduled medicine quantity
+mean 146.27
+total 321346
